@@ -1,10 +1,13 @@
 #include "main.h"
 
-void init_queue(t_queue *queue)
+void	init_queue(t_queue *queue)
 {
-    queue->front = 0;
-	queue->rear = 0; 
+	ft_printf("init q start\n");
+	queue = (t_queue *)malloc(sizeof(t_queue));
+    queue->front = NULL;
+	queue->rear = NULL; 
     queue->count = 0;    // 큐 안의 노드 개수를 0으로 설정
+	ft_printf("init q end\n");
 }
 
 int is_empty(t_queue *queue)

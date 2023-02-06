@@ -49,6 +49,7 @@ static	void	bfs_search(int now_y, int now_x, int **found, t_queue *q, t_all *all
 	int	i;
 
 	i = 0;
+	ft_printf("bfs_serach start\n");
 	while (i < 4)
 	{
 		next_y = delta_y(now_y, i);
@@ -68,19 +69,23 @@ static	void	bfs_search(int now_y, int now_x, int **found, t_queue *q, t_all *all
 int	bfs(t_all *all)
 {
 	int		**found;
-	t_queue	*q;
+	t_queue	q;
 	t_pos	pos;
 
 	found = found_arr_init(all->map_width, all->map_height);
-	init_queue(q);
-	enqueue(q, all->player.pos.x, all->player.pos.y);
+	ft_printf("found init pass\n");
+	init_queue(&q);
+	ft_printf("init q pass\n");
+	enqueue(&q, all->player.pos.x, all->player.pos.y);
+	ft_printf("enqueue pass\n");
 	found[all->player.pos.y][all->player.pos.x] = 1;
-	while (q->count > 0)
+	while (q.count > 0)
 	{
-		pos = dequeue(q);
+		pos = dequeue(&q);
 		if (all->map[pos.y][pos.x] == 'E')
 			return (1);
-		bfs_search(pos.y, pos.x, found, q, all);
+		bfs_search(pos.y, pos.x, found, &q, all);
+		ft_printf("bfs_serach pass\n");
 	}
 	return (0);
 }

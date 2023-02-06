@@ -69,12 +69,28 @@ static int	wall_check(t_all *all)
 int	map_valid_check(t_all *all)
 {
 	if (!rectangular_check(all))
+	{
+		ft_printf("rectangular catch\n");
 		return (0);
+	}
+	ft_printf("rectangular pass\n");
 	if (!must_have_one(all))
+	{
+		ft_printf("must have one catch\n");
 		return (0);
+	}
+	ft_printf("must have one pass\n");
 	if (!wall_check(all))
+	{
+		ft_printf("wall check catch\n");
 		return (0);
+	}
+	ft_printf("wall check pass\n");
 	if (!bfs(all))
+	{
+		ft_printf("bfs catch\n");
 		return (0);
+	}
+	ft_printf("bfs pass\n");
 	return (1);
 }

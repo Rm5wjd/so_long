@@ -76,6 +76,7 @@ int	bfs(t_all *all)
 	ft_printf("found init pass\n");
 	init_queue(&q);
 	ft_printf("init q pass\n");
+	ft_printf("%d\n", q.count);
 	enqueue(&q, all->player.pos.x, all->player.pos.y);
 	ft_printf("enqueue pass\n");
 	found[all->player.pos.y][all->player.pos.x] = 1;

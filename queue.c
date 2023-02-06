@@ -3,7 +3,6 @@
 void	init_queue(t_queue *queue)
 {
 	ft_printf("init q start\n");
-	queue = (t_queue *)malloc(sizeof(t_queue));
     queue->front = NULL;
 	queue->rear = NULL; 
     queue->count = 0;    // 큐 안의 노드 개수를 0으로 설정

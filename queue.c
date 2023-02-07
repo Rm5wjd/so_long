@@ -35,22 +35,20 @@ void enqueue(t_queue *queue, int x, int y)
 
 t_pos dequeue(t_queue *queue)
 {
-    t_pos data;
-    t_node *ptr;
+    t_pos	data;
+    t_node		*ptr;
 
 	data.x = 0;
 	data.y = 0;
-    if (is_empty(queue))    //큐가 비었을 때
-    {
-        ft_printf("Error : Queue is empty!\n");
-        return (data);
+	if (is_empty(queue))
+	{
+		ft_printf("Error : Queue is empty!\n");
+		return (data);
 	}
-    ptr = queue->front;    //맨 앞의 노드 ptr 설정 
-    data = ptr->pos;    // return 할 데이터  
-    queue->front = ptr->next;    //맨 앞은 ptr의 다음 노드로 설정
-    free(ptr);    // ptr 해제 
-    queue->count--;    //큐의 노드 개수를 1 감소
-    
-    return (data);
+	ptr = queue->front;
+	data = ptr->pos;
+	queue->front = ptr->next;
+	free(ptr);
+	queue->count--;
+	return (data);
 }
-

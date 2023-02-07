@@ -1,3 +1,6 @@
+# ifndef __STRUCT_H__
+# define __STRUCT_H__
+
 typedef struct s_data t_data;
 
 #define MAP_WIDTH 10
@@ -68,6 +71,7 @@ typedef struct s_all
 	void		*mlx_ptr;
 	void		*win_ptr;
 	char		**map;
+	int			**found;
 	int			map_width;
 	int			map_height;
 	int			collectible_cnt;
@@ -75,3 +79,5 @@ typedef struct s_all
 	int			startpos_cnt;
 	t_player	player;
 }				t_all;
+
+# endif

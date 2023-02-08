@@ -93,6 +93,7 @@ typedef struct s_all
 	int			exit_cnt;
 	int			startpos_cnt;
 	t_player	player;
+	t_image		background;
 }				t_all;
 
 # endif

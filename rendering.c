@@ -2,12 +2,7 @@
 
 static void	render_background(t_all *all)
 {
-	void	*img;
-	int		width;
-	int		height;
-
-	img = mlx_xpm_file_to_image(all->mlx_ptr, "./Sprites/background/bitmap.xpm", &width, &height);
-	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, img, 0, 0);
+	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, all->background.img, 0, 0);
 }
 
 static void	render_player(t_all *all)
@@ -44,7 +39,7 @@ int	render_all(t_all * all)
 	if (!all->player.a_flag && !all->player.d_flag \
 	&& !all->player.w_flag && !all->player.s_flag)
 		all->player.state = IDEL;
-	//render_background(all);
+	render_background(all);
 	render_player(all);
 	return (0);
 }

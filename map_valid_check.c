@@ -28,8 +28,8 @@ static int	must_have_one(t_all *all)
 				all->exit_cnt++;
 			else if (all->map[i][j] == 'P')
 			{
-				all->player.pos.x = j;
-				all->player.pos.y = i;
+				all->player.pos.x = j * 64;
+				all->player.pos.y = i * 64;
 				all->startpos_cnt++;
 			}
 			j++;

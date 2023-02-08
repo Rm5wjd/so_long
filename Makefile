@@ -9,7 +9,8 @@ DYLD_LIBRARY_PATH=minilibx_opengl_20191021
 
 RM=rm -rf
 
-SRCS= main.c color.c key_event.c init.c map_pharsing.c map_valid_check.c queue.c bfs.c
+SRCS= main.c color.c key_event.c init.c map_pharsing.c map_valid_check.c queue.c bfs.c left_sprite_init.c right_sprite_init.c rendering.c \
+		so_long_utils.c key_release.c
 OBJS=$(SRCS:.c=.o)
 
 all : $(NAME)

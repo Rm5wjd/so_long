@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 static void	line_to_map(char **map, char *line, int i)
 {
@@ -31,19 +32,25 @@ void	map_pharsing(t_all *all, char **argv)
 	char	*line;
 
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		perror("map error");
+		exit(EXIT_FAILURE);
+	}
 	i = 0;
 	all->map_width = ft_atoi(get_next_line(fd));
 	all->map_height = ft_atoi(get_next_line(fd));
 	all->map = (char **)malloc(sizeof(char *) * all->map_height);
 	if (!all->map)
 		return ;
-	while (i < all->map_height)
-	{
-		all->map[i] = (char *)malloc(sizeof(char) * all->map_width);
-		if (!all->map[i])
-			return ;
-		i++;
-	}
+	//while (i < all->map_height)
+	//{
+	//	all->map[i] = (char *)malloc(sizeof(char) * all->map_width);
+	//	if (!all->map[i])
+	//		return ;
+	//	i++;
+	//}
+	//map_zero(all);
 	line = 0; // ..??
 	i = 0;
 	while (i < all->map_height)
@@ -51,7 +58,10 @@ void	map_pharsing(t_all *all, char **argv)
 		line = get_next_line(fd);
 		if (nl_strlen(line) != all->map_width)
 			return ;
-		line_to_map(all->map, line, i);
+		//line_to_map(all->map, line, i);
+		all->map[i] = line;
+		//free(line);
+		line = 0;
 		i++;
 	}
 }

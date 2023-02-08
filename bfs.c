@@ -16,7 +16,7 @@ static	int	**found_arr_init(int width, int height)
 			return (0);
 		i++;
 	}
-	ft_bzero(found, sizeof(found));
+	found_zero(found, width, height);
 	return (found);
 }
 
@@ -49,7 +49,7 @@ static	void	bfs_search(int now_y, int now_x, t_queue *q, t_all *all)
 	int	i;
 
 	i = 0;
-	ft_printf("bfs_serach start\n");
+	//ft_printf("bfs_serach start\n");
 	while (i < 4)
 	{
 		next_y = delta_y(now_y, i);
@@ -87,9 +87,9 @@ int	bfs(t_all *all)
 	init_queue(&q);
 	//ft_printf("init q pass\n");
 	//ft_printf("%d\n", q.count);
-	enqueue(&q, all->player.pos.x, all->player.pos.y);
+	enqueue(&q, all->player.pos.x / 64, all->player.pos.y / 64);
 	//ft_printf("enqueue pass\n");
-	all->found[all->player.pos.y][all->player.pos.x] = 1;
+	all->found[all->player.pos.y / 64][all->player.pos.x / 64] = 1;
 	colletible_cnt = 0;
 	while (q.count > 0)
 	{
@@ -100,7 +100,7 @@ int	bfs(t_all *all)
 		colletible_cnt == all->collectible_cnt)
 			return (1);
 		bfs_search(pos.y, pos.x, &q, all);
-		ft_printf("bfs_serach pass\n");
+		//ft_printf("bfs_serach pass\n");
 	}
 	// found free
 	return (0);

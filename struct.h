@@ -5,6 +5,7 @@ typedef struct s_data t_data;
 
 #define MAP_WIDTH 10
 #define MAP_HEIGHT 8
+#define VELOCITY 5
 
 enum keycode {
 	ESC = 53,
@@ -20,6 +21,11 @@ enum state {
 	IDEL,
 	MOVE,
 	DIE
+};
+
+enum direction {
+	LEFT,
+	RIGHT
 };
 
 typedef	struct	s_pos
@@ -51,10 +57,19 @@ typedef struct	s_image
 
 typedef struct	s_player
 {
-	t_image	idle_sprite[4];
-	t_image	move_sprite[4];
-	t_image	die_sprite[4];
+	t_image	idle_left_sprite[6];
+	t_image	move_left_sprite[4];
+	t_image	die_left_sprite[4];
+	t_image	idle_right_sprite[6];
+	t_image	move_right_sprite[4];
+	t_image	die_right_sprite[4];
 	t_pos	pos;
+	int		state;
+	int		look_direction;
+	int		w_flag;
+	int		a_flag;
+	int		s_flag;
+	int		d_flag;
 }				t_player;
 
 typedef struct	s_data

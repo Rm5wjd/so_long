@@ -20,8 +20,6 @@ int main(int argc, char **argv)
 		ft_printf("Error\n");
 		exit(1);
 	}
-	ft_printf("%p\n", all.mlx_ptr);
-	ft_printf("%p\n", all.win_ptr);
 	mlx_hook(all.win_ptr, 2, 0, key_down, &all);
 	mlx_hook(all.win_ptr, 3, 0, key_up, &all);
 	mlx_hook(all.win_ptr, 17, 0, redcross_close, &all);

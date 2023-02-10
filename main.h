@@ -16,6 +16,7 @@ int create_trgb(int t, int r, int g, int b);
 int	key_down(int keycode, void *param);
 int mouse_down(int button, int x, int y, void *param);
 int redcross_close(void *param);
+void	key_check(t_all *all);
 // key_up
 int	key_up(int keycode, t_all *all);
 
@@ -49,3 +50,7 @@ int	bfs(t_all *all);
 void	map_zero(t_all *all);
 void	map_free(t_all *all);
 void	found_zero(int **all, int width, int height);
+
+// ****collision****
+void	box_collider_update(t_all *all);
+int	collision_detect(t_all *all);

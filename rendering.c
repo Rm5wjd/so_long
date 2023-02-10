@@ -60,6 +60,9 @@ int	render_all(t_all * all)
 	if (!all->player.a_flag && !all->player.d_flag \
 	&& !all->player.w_flag && !all->player.s_flag)
 		all->player.state = IDEL;
+	if ((all->player.a_flag || all->player.d_flag \
+	|| all->player.s_flag || all->player.w_flag) && all->player.state == MOVE)
+		key_check(all);
 	render_background(all);
 	render_info(all);
 	render_player(all);

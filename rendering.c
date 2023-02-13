@@ -2,7 +2,7 @@
 
 static void	render_background(t_all *all)
 {
-	mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, all->background.img, 0, 0);
+	tiling(all);
 }
 
 static void	render_player(t_all *all)
@@ -49,6 +49,11 @@ static void	render_info(t_all *all)
 	mlx_string_put(all->mlx_ptr, all->win_ptr, 50, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.s_flag));
 	mlx_string_put(all->mlx_ptr, all->win_ptr, 60, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.d_flag));
 	mlx_string_put(all->mlx_ptr, all->win_ptr, 120, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.state));
+	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.pos.x, all->player.pos.y, create_trgb(0, 255, 255, 0));
+	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.left_top.x, all->player.rect.left_top.y, create_trgb(0, 255, 0, 0));
+	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.left_bot.x, all->player.rect.left_bot.y, create_trgb(0, 255, 0, 0));
+	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_bot.x, all->player.rect.right_bot.y, create_trgb(0, 255, 0, 0));
+	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_top.x, all->player.rect.right_top.y, create_trgb(0, 255, 0, 0));
 }
 
 int	render_all(t_all * all)

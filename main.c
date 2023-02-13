@@ -13,7 +13,11 @@ int main(int argc, char **argv)
 	t_all all;
 
 	data_init(&all);
-	map_pharsing(&all, argv);
+	if (map_pharsing(&all, argv))
+	{
+		ft_printf("Error\n");
+		exit(1);
+	}
 	print_map(&all);
 	if (!map_valid_check(&all))
 	{

@@ -5,9 +5,10 @@ typedef struct s_data t_data;
 
 #define MAP_WIDTH 10
 #define MAP_HEIGHT 8
+#define TILE_BIT 64
 #define VELOCITY 2
-#define PLAYER_WIDTH 64
-#define PLAYER_HEIGHT 64
+#define PLAYER_WIDTH 27
+#define PLAYER_HEIGHT 36
 
 enum keycode {
 	ESC = 53,
@@ -112,6 +113,9 @@ typedef struct s_all
 	int			startpos_cnt;
 	t_player	player;
 	t_image		background;
+	t_image		wall;
+	t_image		plane;
+	t_image		exit;
 }				t_all;
 
 # endif

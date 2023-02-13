@@ -31,7 +31,7 @@ void	player_right_sprite_init(t_all *all_data);
 int	render_all(t_all * all);
 
 // map_pharsing
-void	map_pharsing(t_all *all, char **argv);
+int	map_pharsing(t_all *all, char **argv);
 void	print_map(t_all *all);
 
 // map_valid_check
@@ -54,3 +54,6 @@ void	found_zero(int **all, int width, int height);
 // ****collision****
 void	box_collider_update(t_all *all);
 int	collision_detect(t_all *all);
+
+// tiling
+void	tiling(t_all *all);

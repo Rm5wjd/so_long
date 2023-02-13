@@ -25,10 +25,23 @@ static size_t	nl_strlen(const char *s)
 	return (len);
 }
 
-void	map_pharsing(t_all *all, char **argv)
+static void	read_map(t_all *all, char **argv)
+{
+	int	i;
+	int	fd;
+
+	i = 0;
+	fd = open(argv[1], O_RDONLY);
+	while (i < all->map_height)
+	{
+		all->map[i] = get_next_line(fd);
+		i++;
+	}
+}
+
+int	map_pharsing(t_all *all, char **argv)
 {
 	int		fd;
-	int		i;
 	char	*line;
 
 	fd = open(argv[1], O_RDONLY);
@@ -37,33 +50,25 @@ void	map_pharsing(t_all *all, char **argv)
 		perror("map error");
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
-	all->map_width = ft_atoi(get_next_line(fd));
-	all->map_height = ft_atoi(get_next_line(fd));
+	line = 0;
+	line = get_next_line(fd);
+	all->map_width = nl_strlen(line);
+	all->map_height++;
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (nl_strlen(line) != all->map_width)
+			return (1);
+		all->map_height++;
+		line = 0;
+		line = get_next_line(fd);	
+	}
 	all->map = (char **)malloc(sizeof(char *) * all->map_height);
 	if (!all->map)
-		return ;
-	//while (i < all->map_height)
-	//{
-	//	all->map[i] = (char *)malloc(sizeof(char) * all->map_width);
-	//	if (!all->map[i])
-	//		return ;
-	//	i++;
-	//}
-	//map_zero(all);
-	line = 0; // ..??
-	i = 0;
-	while (i < all->map_height)
-	{
-		line = get_next_line(fd);
-		if (nl_strlen(line) != all->map_width)
-			return ;
-		//line_to_map(all->map, line, i);
-		all->map[i] = line;
-		//free(line);
-		line = 0;
-		i++;
-	}
+		return (1);
+	close(fd);
+	read_map(all, argv);
+	return (0);
 }
 
 void	print_map(t_all *all)

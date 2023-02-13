@@ -2,17 +2,17 @@
 
 void	box_collider_update(t_all *all)
 {
-	all->player.rect.left_top.x = all->player.pos.x;
-	all->player.rect.left_top.y = all->player.pos.y;
+	all->player.rect.left_top.x = all->player.pos.x + 17;
+	all->player.rect.left_top.y = all->player.pos.y + 14;
 
-	all->player.rect.left_bot.x = all->player.pos.x;
-	all->player.rect.left_bot.y = all->player.pos.y + PLAYER_HEIGHT;
+	all->player.rect.left_bot.x = all->player.rect.left_top.x;
+	all->player.rect.left_bot.y = all->player.rect.left_top.y + PLAYER_HEIGHT;
 
-	all->player.rect.right_top.x = all->player.pos.x + PLAYER_WIDTH;
-	all->player.rect.right_top.y = all->player.pos.y;
+	all->player.rect.right_top.x = all->player.rect.left_top.x + PLAYER_WIDTH;
+	all->player.rect.right_top.y = all->player.rect.left_top.y;
 
-	all->player.rect.right_bot.x = all->player.pos.x + PLAYER_WIDTH;
-	all->player.rect.right_bot.y = all->player.pos.y + PLAYER_HEIGHT;
+	all->player.rect.right_bot.x = all->player.rect.left_top.x + PLAYER_WIDTH;
+	all->player.rect.right_bot.y = all->player.rect.left_top.y + PLAYER_HEIGHT;
 }
 
 static int	vertex_detect(t_pos from, t_pos to, t_all *all)
@@ -59,12 +59,12 @@ int	collision_detect(t_all *all)
 	vertex_to = all->player.rect.left_bot;
 	if (vertex_detect(vertex_from, vertex_to, all) == WALL)
 		return (1);
-	vertex_from = all->player.rect.right_bot;
-	vertex_to = all->player.rect.right_top;
+	vertex_from = all->player.rect.right_top;
+	vertex_to = all->player.rect.right_bot;
 	if (vertex_detect(vertex_from, vertex_to, all) == WALL)
 		return (1);
-	vertex_from = all->player.rect.right_bot;
-	vertex_to = all->player.rect.left_bot;
+	vertex_from = all->player.rect.left_bot;
+	vertex_to = all->player.rect.right_bot;
 	if (vertex_detect(vertex_from, vertex_to, all) == WALL)
 		return (1);
 	return (0);

@@ -12,12 +12,12 @@ int main(int argc, char **argv)
 {
 	t_all all;
 
-	data_init(&all);
 	if (map_pharsing(&all, argv))
 	{
 		ft_printf("Error\n");
 		exit(1);
 	}
+	data_init(&all, all.map_width, all.map_height);
 	print_map(&all);
 	if (!map_valid_check(&all))
 	{

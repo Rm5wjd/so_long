@@ -37,7 +37,11 @@ static int	vertex_detect(t_pos from, t_pos to, t_all *all)
 			if (all->map[from.y / 64][from.x / 64] == '1')
 				return (WALL);
 			else if (all->map[from.y / 64][from.x / 64] == 'C')
+			{
+				all->map[from.y / 64][from.x / 64] = '0';
+				all->collectible_cnt--;
 				return (COLLECTIBLE);
+			}
 			else if (all->map[from.y / 64][from.x / 64] == 'E')
 				return (EXIT);
 			from.x++;
@@ -46,26 +50,27 @@ static int	vertex_detect(t_pos from, t_pos to, t_all *all)
 	return (EMPTY);
 }
 
+static int	collided_object(t_box_collider box)
+{
+	if (box.top == WALL || box.bot == WALL || box.left == WALL || box.right == WALL)
+		return (WALL);
+	else if (box.top == COLLECTIBLE || box.bot == COLLECTIBLE || box.left == COLLECTIBLE || box.right == COLLECTIBLE)
+		return (COLLECTIBLE);
+	else if (box.top == EXIT || box.bot == EXIT || box.left == EXIT || box.right == EXIT)
+		return (EXIT);
+	else if (box.top == ENEMY || box.bot == ENEMY || box.left == ENEMY || box.right == ENEMY)
+		return (ENEMY);
+	else
+		return (EMPTY);
+}
+
 int	collision_detect(t_all *all)
 {
-	t_pos	vertex_from;
-	t_pos	vertex_to;
+	t_box_collider box;
 
-	vertex_from = all->player.rect.left_top;
-	vertex_to = all->player.rect.right_top;
-	if (vertex_detect(vertex_from, vertex_to, all) == WALL)
-		return (1);
-	vertex_from = all->player.rect.left_top;
-	vertex_to = all->player.rect.left_bot;
-	if (vertex_detect(vertex_from, vertex_to, all) == WALL)
-		return (1);
-	vertex_from = all->player.rect.right_top;
-	vertex_to = all->player.rect.right_bot;
-	if (vertex_detect(vertex_from, vertex_to, all) == WALL)
-		return (1);
-	vertex_from = all->player.rect.left_bot;
-	vertex_to = all->player.rect.right_bot;
-	if (vertex_detect(vertex_from, vertex_to, all) == WALL)
-		return (1);
-	return (0);
+	box.top = vertex_detect(all->player.rect.left_top, all->player.rect.right_top, all);
+	box.left = vertex_detect(all->player.rect.left_top, all->player.rect.left_bot, all);
+	box.right = vertex_detect(all->player.rect.right_top, all->player.rect.right_bot, all);
+	box.bot = vertex_detect(all->player.rect.left_bot, all->player.rect.right_bot, all);
+	return (collided_object(box));
 }

@@ -16,12 +16,12 @@ int create_trgb(int t, int r, int g, int b);
 int	key_down(int keycode, void *param);
 int mouse_down(int button, int x, int y, void *param);
 int redcross_close(void *param);
-void	key_check(t_all *all);
+void	key_input(t_all *all);
 // key_up
 int	key_up(int keycode, t_all *all);
 
 // init
-void	data_init(t_all	*all_data);
+void	data_init(t_all	*all_data, int map_width, int map_height);
 
 // sprite init
 void	player_left_sprite_init(t_all *all_data);

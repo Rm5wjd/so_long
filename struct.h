@@ -23,6 +23,7 @@ enum keycode {
 enum state {
 	IDEL,
 	MOVE,
+	COLLECT,
 	DIE
 };
 
@@ -65,6 +66,7 @@ typedef struct	s_image
 	int		img_width;
 	int		img_height;
 }				t_image;
+
 typedef struct	s_rect
 {
 	t_pos	left_top;
@@ -73,14 +75,24 @@ typedef struct	s_rect
 	t_pos	right_bot;
 }				t_rect;
 
+typedef struct	s_box_collider
+{
+	int	left;
+	int	right;
+	int	top;
+	int	bot;
+}				t_box_collider;
+
 typedef struct	s_player
 {
 	t_image	idle_left_sprite[6];
 	t_image	move_left_sprite[4];
 	t_image	die_left_sprite[4];
+	t_image	collect_left_sprite[3];
 	t_image	idle_right_sprite[6];
 	t_image	move_right_sprite[4];
 	t_image	die_right_sprite[4];
+	t_image	collect_right_sprite[3];
 	t_pos	pos;
 	t_rect	rect;
 	int		state;
@@ -115,6 +127,7 @@ typedef struct s_all
 	t_image		background;
 	t_image		wall;
 	t_image		plane;
+	t_image		collectible;
 	t_image		exit;
 }				t_all;
 

@@ -10,11 +10,13 @@ static void	render_player(t_all *all)
 	t_player	player;
 	static int	move_frame;
 	static int	idle_frame;
+	static int	collectible_frame;
 
 	player = all->player;
 	if (player.state == IDEL)
 	{
 		move_frame = 0;
+		collectible_frame = 0;
 		if (++idle_frame == 120)
 			idle_frame = 0;
 		if (player.look_direction == LEFT)
@@ -29,6 +31,7 @@ static void	render_player(t_all *all)
 	else if (player.state == MOVE)
 	{
 		idle_frame = 0;
+		collectible_frame = 0;
 		if (++move_frame == 80)
 			move_frame = 0;
 		if (player.look_direction == LEFT)
@@ -39,6 +42,29 @@ static void	render_player(t_all *all)
 		{
 			mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, player.move_right_sprite[move_frame / 20].img, player.pos.x, player.pos.y);
 		}
+	}
+	else if (player.state == COLLECT)
+	{
+		idle_frame = 0;
+		move_frame = 0;
+		if (++collectible_frame == 60)
+		{
+			collectible_frame = 0;
+			player.state = IDEL;
+		}
+		if (player.look_direction == LEFT)
+		{
+			mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, player.collect_left_sprite[collectible_frame / 20].img, player.pos.x, player.pos.y);
+		}
+		else
+		{
+			mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, player.collect_right_sprite[collectible_frame / 20].img, player.pos.x, player.pos.y);
+		}
+		
+	}
+	else if (player.state == DIE)
+	{
+
 	}
 }
 
@@ -67,7 +93,7 @@ int	render_all(t_all * all)
 		all->player.state = IDEL;
 	if ((all->player.a_flag || all->player.d_flag \
 	|| all->player.s_flag || all->player.w_flag) && all->player.state == MOVE)
-		key_check(all);
+		key_input(all);
 	render_background(all);
 	render_info(all);
 	render_player(all);

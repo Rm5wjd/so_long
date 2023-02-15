@@ -68,6 +68,7 @@ static int	wall_check(t_all *all)
 
 int	map_valid_check(t_all *all)
 {
+	ft_printf("map_valid_check\n");
 	if (!rectangular_check(all))
 	{
 		ft_printf("rectangular catch\n");

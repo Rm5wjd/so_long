@@ -53,15 +53,14 @@ int	map_pharsing(t_all *all, char **argv)
 	line = 0;
 	line = get_next_line(fd);
 	all->map_width = nl_strlen(line);
-	all->map_height++;
-	line = get_next_line(fd);
-	while (line)
+	all->map_height = 0;
+	while (line != 0)
 	{
 		if (nl_strlen(line) != all->map_width)
 			return (1);
 		all->map_height++;
 		line = 0;
-		line = get_next_line(fd);	
+		line = get_next_line(fd);
 	}
 	all->map = (char **)malloc(sizeof(char *) * all->map_height);
 	if (!all->map)
@@ -77,6 +76,7 @@ void	print_map(t_all *all)
 	int	j;
 
 	i = 0;
+	ft_printf("%d %d\n", all->map_height, all->map_width);
 	while (i < all->map_height)
 	{
 		j = 0;
@@ -88,4 +88,5 @@ void	print_map(t_all *all)
 		ft_printf("\n");
 		i++;
 	}
+	ft_printf("print_map end\n");
 }

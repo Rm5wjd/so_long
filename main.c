@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/15 20:42:24 by junglee           #+#    #+#             */
+/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -12,6 +24,7 @@ int main(int argc, char **argv)
 {
 	t_all all;
 
+	ft_bzero(&all, sizeof(t_all));
 	if (map_pharsing(&all, argv))
 	{
 		ft_printf("Error\n");
@@ -19,7 +32,7 @@ int main(int argc, char **argv)
 	}
 	data_init(&all, all.map_width, all.map_height);
 	print_map(&all);
-	if (!map_valid_check(&all))
+	if (map_valid_check(&all))
 	{
 		ft_printf("Error\n");
 		exit(1);

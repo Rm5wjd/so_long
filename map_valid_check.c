@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_valid_check.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/15 20:42:43 by junglee           #+#    #+#             */
+/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 static int	rectangular_check(t_all *all)
@@ -14,9 +26,6 @@ static int	must_have_one(t_all *all)
 	int	j;
 
 	i = 0;
-	all->collectible_cnt = 0;
-	all->exit_cnt = 0;
-	all->startpos_cnt = 0;
 	while (i < all->map_height)
 	{
 		j = 0;
@@ -36,7 +45,8 @@ static int	must_have_one(t_all *all)
 		}
 		i++;
 	}
-	if (all->collectible_cnt == 0 || all->exit_cnt == 0 || all->startpos_cnt == 0 || all->startpos_cnt > 1)
+	if (all->collectible_cnt == 0 || all->exit_cnt == 0 || \
+	all->startpos_cnt == 0 || all->startpos_cnt > 1 || all->exit_cnt > 1)
 		return (0);
 	return (1);
 }
@@ -68,30 +78,30 @@ static int	wall_check(t_all *all)
 
 int	map_valid_check(t_all *all)
 {
-	ft_printf("map_valid_check\n");
+	//ft_printf("map_valid_check\n");
 	if (!rectangular_check(all))
 	{
-		ft_printf("rectangular catch\n");
-		return (0);
+		//ft_printf("rectangular catch\n");
+		return (1);
 	}
-	ft_printf("rectangular pass\n");
+	//ft_printf("rectangular pass\n");
 	if (!must_have_one(all))
 	{
-		ft_printf("must have one catch\n");
-		return (0);
+		//ft_printf("must have one catch\n");
+		return (1);
 	}
-	ft_printf("must have one pass\n");
+	//ft_printf("must have one pass\n");
 	if (!wall_check(all))
 	{
-		ft_printf("wall check catch\n");
-		return (0);
+		//ft_printf("wall check catch\n");
+		return (1);
 	}
-	ft_printf("wall check pass\n");
+	//ft_printf("wall check pass\n");
 	if (!bfs(all))
 	{
-		ft_printf("bfs catch\n");
-		return (0);
+		//ft_printf("bfs catch\n");
+		return (1);
 	}
-	ft_printf("bfs pass\n");
-	return (1);
+	//ft_printf("bfs pass\n");
+	return (0);
 }

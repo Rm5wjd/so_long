@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_event.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/15 20:42:17 by junglee           #+#    #+#             */
+/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 static void key_flag_set(int keycode, t_all *all)
@@ -13,82 +25,28 @@ static void key_flag_set(int keycode, t_all *all)
 }
 void	key_input(t_all *all)
 {
-	t_pos	prev;
-	int		collision;
+	t_pos		prev;
+	int			collision;
+	static int	cnt_frame;
 
 	prev.x = all->player.pos.x;
 	prev.y = all->player.pos.y;
-	if (all->player.w_flag)
-	{
-		all->player.pos.y -= VELOCITY;
-		all->player.state = MOVE;
-		mlx_string_put(all->mlx_ptr, all->win_ptr, 140, 60, \
-		create_trgb(0, 255, 0, 0), "up move");
-		if (all->player.d_flag)
-		{
-			all->player.pos.x += VELOCITY;
-			all->player.look_direction = RIGHT;
-		}
-		else if (all->player.a_flag)
-		{
-			all->player.pos.x -= VELOCITY;
-			all->player.look_direction = LEFT;
-		}
-	}
-	else if (all->player.a_flag)
-	{
-		all->player.pos.x -= VELOCITY;
-		all->player.state = MOVE;
-		mlx_string_put(all->mlx_ptr, all->win_ptr, 140, 60, \
-		create_trgb(0, 255, 0, 0), "left move");
-		all->player.look_direction = LEFT;
-		if (all->player.w_flag)
-			all->player.pos.y -= VELOCITY;
-		else if (all->player.s_flag)
-			all->player.pos.y += VELOCITY;
-	}
-	else if (all->player.s_flag)
-	{
-		all->player.pos.y += VELOCITY;
-		all->player.state = MOVE;
-		mlx_string_put(all->mlx_ptr, all->win_ptr, 140, 60, \
-		create_trgb(0, 255, 0, 0), "down move");
-		if (all->player.d_flag)
-		{
-			all->player.pos.x += VELOCITY;
-			all->player.look_direction = RIGHT;
-		}
-		else if (all->player.a_flag)
-		{
-			all->player.pos.x -= VELOCITY;
-			all->player.look_direction = LEFT;
-		}
-	}
-	else if (all->player.d_flag)
-	{
-		all->player.pos.x += VELOCITY;
-		all->player.state = MOVE;
-		mlx_string_put(all->mlx_ptr, all->win_ptr, 140, 60, \
-		create_trgb(0, 255, 0, 0), "right move");
-		all->player.look_direction = RIGHT;
-		if (all->player.w_flag)
-			all->player.pos.y -= VELOCITY;
-		else if (all->player.s_flag)
-			all->player.pos.y += VELOCITY;
-	}
+	wasd_pos_set(all);
 	box_collider_update(all);
 	collision = collision_detect(all);
-	//ft_printf("%d\n", collision);
 	if (collision == WALL)
+	{
 		all->player.pos = prev;
-	//else if (collision == COLLECTIBLE)
-	//	all->player.state = COLLECT;
+		return ;
+	}
 	else if (collision == EXIT)
 	{
 		if (all->collectible_cnt == 0)
 			exit (0);
 		all->player.pos = prev;
 	}
+	if (++cnt_frame % 2 == 0)
+		all->walk_cnt++;
 }
 
 int	key_down(int keycode, void *param)

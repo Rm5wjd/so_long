@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/15 20:43:07 by junglee           #+#    #+#             */
+/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # ifndef __STRUCT_H__
 # define __STRUCT_H__
 
 typedef struct s_data t_data;
 
-#define MAP_WIDTH 10
-#define MAP_HEIGHT 8
 #define TILE_BIT 64
 #define VELOCITY 2
 #define PLAYER_WIDTH 27
@@ -120,11 +130,11 @@ typedef struct s_all
 	int			**found;
 	int			map_width;
 	int			map_height;
+	int			walk_cnt;
 	int			collectible_cnt;
 	int			exit_cnt;
 	int			startpos_cnt;
 	t_player	player;
-	t_image		background;
 	t_image		wall;
 	t_image		plane;
 	t_image		collectible;

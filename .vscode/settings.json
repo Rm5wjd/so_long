@@ -5,6 +5,7 @@
 		"__config": "c",
 		"locale": "c",
 		"unistd.h": "c",
-		"main.h": "c"
+		"main.h": "c",
+		"__locale": "c"
 	}
 }

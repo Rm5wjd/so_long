@@ -6,23 +6,23 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:24 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/15 21:28:54 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_all all;
+	t_all	all;
 
 	ft_bzero(&all, sizeof(t_all));
 	if (map_pharsing(&all, argv))

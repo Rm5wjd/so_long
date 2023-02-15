@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:43 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/15 21:16:10 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	rectangular_check(t_all *all)
 {
-	if (all->map_width == all->map_height || all->map_height <= 0 || all->map_width <= 0)
+	if (all->map_width == all->map_height || all->map_height <= 0 \
+	|| all->map_width <= 0)
 		return (0);
 	else
 		return (1);
@@ -78,30 +79,13 @@ static int	wall_check(t_all *all)
 
 int	map_valid_check(t_all *all)
 {
-	//ft_printf("map_valid_check\n");
 	if (!rectangular_check(all))
-	{
-		//ft_printf("rectangular catch\n");
 		return (1);
-	}
-	//ft_printf("rectangular pass\n");
 	if (!must_have_one(all))
-	{
-		//ft_printf("must have one catch\n");
 		return (1);
-	}
-	//ft_printf("must have one pass\n");
 	if (!wall_check(all))
-	{
-		//ft_printf("wall check catch\n");
 		return (1);
-	}
-	//ft_printf("wall check pass\n");
 	if (!bfs(all))
-	{
-		//ft_printf("bfs catch\n");
 		return (1);
-	}
-	//ft_printf("bfs pass\n");
 	return (0);
 }

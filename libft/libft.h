@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:37:34 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/06 15:17:48 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/15 21:23:20 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-int	ft_atoi(const char *str);
+
+int		ft_atoi(const char *str);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

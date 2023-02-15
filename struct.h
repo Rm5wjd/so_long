@@ -6,21 +6,21 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:43:07 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/15 21:21:56 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef __STRUCT_H__
-# define __STRUCT_H__
+#	ifndef STRUCT_H
+# define STRUCT_H
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
-#define TILE_BIT 64
-#define VELOCITY 2
-#define PLAYER_WIDTH 27
-#define PLAYER_HEIGHT 36
+# define TILE_BIT 64
+# define VELOCITY 2
+# define PLAYER_WIDTH 27
+# define PLAYER_HEIGHT 36
 
-enum keycode {
+enum	e_keycode {
 	ESC = 53,
 	W = 13,
 	A = 0,
@@ -30,19 +30,19 @@ enum keycode {
 	SPACEBAR = 49
 };
 
-enum state {
+enum	e_state {
 	IDEL,
 	MOVE,
 	COLLECT,
 	DIE
 };
 
-enum direction {
+enum	e_direction {
 	LEFT,
 	RIGHT
 };
 
-enum map_object {
+enum	e_map_object {
 	WALL,
 	COLLECTIBLE,
 	ENEMY,
@@ -50,16 +50,16 @@ enum map_object {
 	EMPTY
 };
 
-typedef	struct	s_pos
+typedef struct s_pos
 {
 	int	x;
 	int	y;
 }				t_pos;
 
-typedef struct	s_node
+typedef struct s_node
 {
-	t_pos	pos;
-	struct	s_node	*next;
+	t_pos			pos;
+	struct s_node	*next;
 }				t_node;
 
 typedef struct s_queue
@@ -69,15 +69,14 @@ typedef struct s_queue
 	int		count;
 }				t_queue;
 
-
-typedef struct	s_image
+typedef struct s_image
 {
 	void	*img;
 	int		img_width;
 	int		img_height;
 }				t_image;
 
-typedef struct	s_rect
+typedef struct s_rect
 {
 	t_pos	left_top;
 	t_pos	left_bot;
@@ -85,7 +84,7 @@ typedef struct	s_rect
 	t_pos	right_bot;
 }				t_rect;
 
-typedef struct	s_box_collider
+typedef struct s_box_collider
 {
 	int	left;
 	int	right;
@@ -93,7 +92,7 @@ typedef struct	s_box_collider
 	int	bot;
 }				t_box_collider;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	t_image	idle_left_sprite[6];
 	t_image	move_left_sprite[4];
@@ -113,7 +112,7 @@ typedef struct	s_player
 	int		d_flag;
 }				t_player;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
@@ -141,4 +140,4 @@ typedef struct s_all
 	t_image		exit;
 }				t_all;
 
-# endif
+#	endif

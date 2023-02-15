@@ -6,13 +6,13 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:17 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 20:43:12 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/15 21:28:51 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void key_flag_set(int keycode, t_all *all)
+static void	key_flag_set(int keycode, t_all *all)
 {
 	if (keycode == W)
 		all->player.w_flag = 1;
@@ -23,6 +23,7 @@ static void key_flag_set(int keycode, t_all *all)
 	else if (keycode == D)
 		all->player.d_flag = 1;
 }
+
 void	key_input(t_all *all)
 {
 	t_pos		prev;
@@ -66,7 +67,7 @@ int	key_down(int keycode, void *param)
 	return (keycode);
 }
 
-int mouse_down(int button, int x, int y, void *param)
+int	mouse_down(int button, int x, int y, void *param)
 {
 	t_all	*all;
 
@@ -75,7 +76,7 @@ int mouse_down(int button, int x, int y, void *param)
 	return (button);
 }
 
-int redcross_close(void *param)
+int	redcross_close(void *param)
 {
 	t_all	*all;
 

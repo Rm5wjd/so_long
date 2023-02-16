@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:43:07 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:21:56 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:26:13 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef struct s_all
 	t_player	player;
 	t_image		wall;
 	t_image		plane;
-	t_image		collectible;
+	t_image		collectible[4];
 	t_image		exit;
 }				t_all;
 

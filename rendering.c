@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:56 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:19:41 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:27:03 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 static void	render_background(t_all *all)
 {
+	if (all->collectible_cnt == 0)
+	{
+		free(all->exit.img);
+		all->exit.img = mlx_xpm_file_to_image(all->mlx_ptr, \
+		"./Sprites/tileset/exit_open.xpm", \
+		&(all->exit.img_width), &(all->exit.img_height));
+	}
 	tiling(all);
 }
 

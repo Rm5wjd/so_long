@@ -6,16 +6,36 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:14 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:10:53 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/16 13:40:05 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+static void	collectible_sprite(t_all *all_data)
+{
+	all_data->collectible[0].img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
+	"./Sprites/tileset/collectible/ball000.xpm", \
+	&(all_data->collectible[0].img_width), \
+	&(all_data->collectible[0].img_height));
+	all_data->collectible[1].img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
+	"./Sprites/tileset/collectible/ball001.xpm", \
+	&(all_data->collectible[1].img_width), \
+	&(all_data->collectible[1].img_height));
+	all_data->collectible[2].img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
+	"./Sprites/tileset/collectible/ball002.xpm", \
+	&(all_data->collectible[2].img_width), \
+	&(all_data->collectible[2].img_height));
+	all_data->collectible[3].img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
+	"./Sprites/tileset/collectible/ball003.xpm", \
+	&(all_data->collectible[3].img_width), \
+	&(all_data->collectible[3].img_height));
+}
+
 static void	tileset_init(t_all *all_data)
 {
 	all_data->wall.img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
-	"./Sprites/tileset/Brick_Wall.xpm", \
+	"./Sprites/tileset/metal_wall.xpm", \
 	&(all_data->wall.img_width), &(all_data->wall.img_height));
 	all_data->plane.img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
 	"./Sprites/tileset/Metal_Floor.xpm", \
@@ -23,9 +43,7 @@ static void	tileset_init(t_all *all_data)
 	all_data->exit.img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
 	"./Sprites/tileset/exit.xpm", \
 	&(all_data->exit.img_width), &(all_data->exit.img_height));
-	all_data->collectible.img = mlx_xpm_file_to_image(all_data->mlx_ptr, \
-	"./Sprites/tileset/coin.xpm", \
-	&(all_data->collectible.img_width), &(all_data->collectible.img_height));
+	collectible_sprite(all_data);
 }
 
 void	data_init(t_all	*all_data, int map_width, int map_height)

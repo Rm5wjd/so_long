@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:43:07 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/16 14:26:13 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/16 16:17:23 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef struct s_data	t_data;
 # define VELOCITY 2
 # define PLAYER_WIDTH 27
 # define PLAYER_HEIGHT 36
+# define ENEMY_WIDTH 33
+# define ENEMY_HEIGHT 57
 
 enum	e_keycode {
 	ESC = 53,
@@ -112,6 +114,16 @@ typedef struct s_player
 	int		d_flag;
 }				t_player;
 
+typedef struct s_enemy
+{
+	t_image	move_left_sprite[4];
+	t_image	move_right_sprite[4];
+	t_pos	pos;
+	t_rect	rect;
+	int		state;
+	int		look_direction;
+}				t_enemy;
+
 typedef struct s_data
 {
 	void	*img;
@@ -134,6 +146,7 @@ typedef struct s_all
 	int			exit_cnt;
 	int			startpos_cnt;
 	t_player	player;
+	t_enemy		enemy;
 	t_image		wall;
 	t_image		plane;
 	t_image		collectible[4];

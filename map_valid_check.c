@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:43 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:16:10 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/16 16:35:58 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int	map_valid_check(t_all *all)
 		return (1);
 	if (!bfs(all))
 		return (1);
+	ft_printf("map check end\n");
 	return (0);
 }

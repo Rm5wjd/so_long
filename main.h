@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:27 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 20:49:09 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:04:44 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	data_init(t_all	*all_data, int map_width, int map_height);
 // sprite init
 void	player_left_sprite_init(t_all *all_data);
 void	player_right_sprite_init(t_all *all_data);
+void	enemy_left_sprite_init(t_all *all);
+void	enemy_right_sprite_init(t_all *all);
 
 // *** render ***
 int		render_all(t_all *all);
@@ -69,6 +71,10 @@ void	found_zero(int **all, int width, int height);
 // ****collision****
 void	box_collider_update(t_all *all);
 int		collision_detect(t_all *all);
+
+void	enemy_box_collider_update(t_all *all);
+int		enemy_player_collision(t_all *all);
+int		enemy_object_collision(t_all *all);
 
 // tiling
 void	tiling(t_all *all);

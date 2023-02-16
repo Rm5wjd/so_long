@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:56 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/16 14:27:03 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:04:55 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,51 @@ static void	render_info(t_all *all)
 	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_bot.x, all->player.rect.right_bot.y, create_trgb(0, 255, 0, 0));
 	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_top.x, all->player.rect.right_top.y, create_trgb(0, 255, 0, 0));
 	mlx_string_put(all->mlx_ptr, all->win_ptr, 150, 80, create_trgb(0, 0, 255, 0), walk_cnt);
-	ft_printf("%d\n", all->walk_cnt);
+	//ft_printf("%d\n", all->walk_cnt);
 	free(walk_cnt);
 }
 
-int	render_all(t_all * all)
+static void	render_enemy(t_all *all)
+{
+	t_player	player;
+	static int	move_frame;
+	t_pos		prev;
+
+	prev.x = all->enemy.pos.x;
+	prev.y = all->enemy.pos.y;
+	player = all->player;
+	if (player.pos.x < all->enemy.pos.x)
+	{
+		all->enemy.look_direction = LEFT;
+		all->enemy.pos.x -= 1;
+	}
+	else
+	{
+		all->enemy.look_direction = RIGHT;
+		all->enemy.pos.x += 1;
+	}
+	if (player.pos.y < all->enemy.pos.y)
+		all->enemy.pos.y -= 1;
+	else
+		all->enemy.pos.y += 1;
+	enemy_box_collider_update(all);
+	if (enemy_player_collision(all))
+		exit(1);
+	if (enemy_object_collision(all))
+		all->enemy.pos = prev;
+	if (++move_frame == 80)
+		move_frame = 0;
+	if (all->enemy.look_direction == LEFT)
+		mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, \
+		all->enemy.move_left_sprite[move_frame / 20].img, \
+		all->enemy.pos.x, all->enemy.pos.y);
+	else
+		mlx_put_image_to_window(all->mlx_ptr, all->win_ptr, \
+		all->enemy.move_right_sprite[move_frame / 20].img, \
+		all->enemy.pos.x, all->enemy.pos.y);
+}
+
+int	render_all(t_all *all)
 {
 	static int	a;
 
@@ -100,5 +140,6 @@ int	render_all(t_all * all)
 	render_background(all);
 	render_info(all);
 	render_player(all);
+	render_enemy(all);
 	return (0);
 }

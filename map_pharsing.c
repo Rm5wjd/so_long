@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:35 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:14:56 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:21:49 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ int	map_pharsing(t_all *all, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		ft_printf("map error\n");
-		exit(EXIT_FAILURE);
-	}
+		exit_error();
 	line = 0;
 	line = get_next_line(fd);
 	all->map_width = nl_strlen(line);

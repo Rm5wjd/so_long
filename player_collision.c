@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:49 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/16 15:58:55 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:48:08 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,9 @@ void	box_collider_update(t_all *all)
 static int	vertex_detect(t_pos from, t_pos to, t_all *all)
 {
 	if (from.x == to.x)
-	{
-		while (from.y <= to.y)
-		{
-			if (all->map[from.y / 64][from.x / 64] == '1')
-				return (WALL);
-			else if (all->map[from.y / 64][from.x / 64] == 'C')
-			{
-				all->map[from.y / 64][from.x / 64] = '0';
-				all->collectible_cnt--;
-				return (COLLECTIBLE);
-			}
-			else if (all->map[from.y / 64][from.x / 64] == 'E')
-				return (EXIT);
-			from.y++;
-		}
-	}
+		return (vertex_y_from_to(all, from, to));
 	else
-	{
-		while (from.x <= to.x)
-		{
-			if (all->map[from.y / 64][from.x / 64] == '1')
-				return (WALL);
-			else if (all->map[from.y / 64][from.x / 64] == 'C')
-			{
-				all->map[from.y / 64][from.x / 64] = '0';
-				all->collectible_cnt--;
-				return (COLLECTIBLE);
-			}
-			else if (all->map[from.y / 64][from.x / 64] == 'E')
-				return (EXIT);
-			from.x++;
-		}
-	}
-	return (EMPTY);
+		return (vertex_x_from_to(all, from, to));
 }
 
 static int	collided_object(t_box_collider box)

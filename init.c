@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:14 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/16 16:40:11 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:54:46 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	data_init(t_all	*all_data, int map_width, int map_height)
 	player_right_sprite_init(all_data);
 	enemy_left_sprite_init(all_data);
 	enemy_right_sprite_init(all_data);
-	all_data->enemy.pos.x = 4 * TILE_BIT;
+	all_data->enemy.pos.x = 19 * TILE_BIT;
 	all_data->enemy.pos.y = 4 * TILE_BIT;
 }

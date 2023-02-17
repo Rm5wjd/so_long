@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:27 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/16 17:04:44 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:47:06 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,16 @@ int		bfs(t_all *all);
 void	map_zero(t_all *all);
 void	map_free(t_all *all);
 void	found_zero(int **all, int width, int height);
+void	enemy_collision_check(t_all *all, t_pos prev);
+void	exit_error(void);
+// so_long_utils2
+void	render_move(t_all *all, t_player player, int move_frame);
+void	render_idle(t_all *all, t_player player, int idle_frame);
+void	render_move_enemy(t_all *all, t_enemy enemy, int move_frame);
+int		haveone_final_check(t_all *all);
+// so_long_utils3
+int		vertex_y_from_to(t_all *all, t_pos from, t_pos to);
+int		vertex_x_from_to(t_all *all, t_pos from, t_pos to);
 
 // ****collision****
 void	box_collider_update(t_all *all);

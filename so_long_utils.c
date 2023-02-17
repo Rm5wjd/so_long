@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:43:01 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:20:25 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:19:25 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,19 @@ void	map_zero(t_all *all)
 		}
 		i++;
 	}
+}
+
+void	enemy_collision_check(t_all *all, t_pos prev)
+{
+	enemy_box_collider_update(all);
+	if (enemy_player_collision(all))
+		exit(1);
+	if (enemy_object_collision(all))
+		all->enemy.pos = prev;
+}
+
+void	exit_error(void)
+{
+	ft_printf("Error\n");
+	exit(1);
 }

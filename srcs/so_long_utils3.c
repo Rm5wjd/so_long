@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:45:03 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 15:46:34 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 21:37:36 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ int	vertex_x_from_to(t_all *all, t_pos from, t_pos to)
 		from.x++;
 	}
 	return (EMPTY);
+}
+
+void	exit_so_long(t_all *all)
+{
+	mlx_destroy_window(all->mlx_ptr, all->win_ptr);
+	map_free(all);
+	exit(0);
 }

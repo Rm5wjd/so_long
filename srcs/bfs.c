@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:06 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:10:03 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 19:46:35 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,13 @@ int	bfs(t_all *all)
 			colletible_cnt++;
 		if (all->map[pos.y][pos.x] == 'E' && \
 		colletible_cnt == all->collectible_cnt)
+		{
+			//free(all->found);
+			free_queue(&q);
 			return (1);
+		}
 		bfs_search(pos.y, pos.x, &q, all);
 	}
+	//free(all->found);
 	return (0);
 }

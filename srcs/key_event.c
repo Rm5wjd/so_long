@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:17 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:28:51 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 21:25:23 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	key_input(t_all *all)
 	else if (collision == EXIT)
 	{
 		if (all->collectible_cnt == 0)
-			exit (0);
+			exit_so_long(all);
 		all->player.pos = prev;
 	}
 	if (++cnt_frame % 2 == 0)
@@ -57,8 +57,7 @@ int	key_down(int keycode, void *param)
 	all = (t_all *)param;
 	if (keycode == ESC)
 	{
-		mlx_destroy_window(all->mlx_ptr, all->win_ptr);
-		exit(0);
+		exit_so_long(all);
 	}
 	mlx_string_put(all->mlx_ptr, all->win_ptr, 140, 40, \
 		create_trgb(0, 255, 0, 0), "key_down");
@@ -81,6 +80,6 @@ int	redcross_close(void *param)
 	t_all	*all;
 
 	all = (t_all *)param;
-	ft_printf("exit");
-	exit(0);
+	exit_so_long(all);
+	return (0);
 }

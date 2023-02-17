@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:56 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 15:12:45 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 20:59:20 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ static void	render_info(t_all *all)
 	char	*walk_cnt;
 
 	walk_cnt = ft_itoa(all->walk_cnt);
-	mlx_string_put(all->mlx_ptr, all->win_ptr, 50, 50, create_trgb(0, 255, 0, 0), ft_itoa(all->player.w_flag));
-	mlx_string_put(all->mlx_ptr, all->win_ptr, 40, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.a_flag));
-	mlx_string_put(all->mlx_ptr, all->win_ptr, 50, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.s_flag));
-	mlx_string_put(all->mlx_ptr, all->win_ptr, 60, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.d_flag));
-	mlx_string_put(all->mlx_ptr, all->win_ptr, 120, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.state));
-	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.pos.x, all->player.pos.y, create_trgb(0, 255, 255, 0));
-	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.left_top.x, all->player.rect.left_top.y, create_trgb(0, 255, 0, 0));
-	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.left_bot.x, all->player.rect.left_bot.y, create_trgb(0, 255, 0, 0));
-	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_bot.x, all->player.rect.right_bot.y, create_trgb(0, 255, 0, 0));
-	mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_top.x, all->player.rect.right_top.y, create_trgb(0, 255, 0, 0));
+	//mlx_string_put(all->mlx_ptr, all->win_ptr, 50, 50, create_trgb(0, 255, 0, 0), ft_itoa(all->player.w_flag));
+	//mlx_string_put(all->mlx_ptr, all->win_ptr, 40, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.a_flag));
+	//mlx_string_put(all->mlx_ptr, all->win_ptr, 50, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.s_flag));
+	//mlx_string_put(all->mlx_ptr, all->win_ptr, 60, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.d_flag));
+	//mlx_string_put(all->mlx_ptr, all->win_ptr, 120, 60, create_trgb(0, 255, 0, 0), ft_itoa(all->player.state));
+	//mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.pos.x, all->player.pos.y, create_trgb(0, 255, 255, 0));
+	//mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.left_top.x, all->player.rect.left_top.y, create_trgb(0, 255, 0, 0));
+	//mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.left_bot.x, all->player.rect.left_bot.y, create_trgb(0, 255, 0, 0));
+	//mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_bot.x, all->player.rect.right_bot.y, create_trgb(0, 255, 0, 0));
+	//mlx_pixel_put(all->mlx_ptr, all->win_ptr, all->player.rect.right_top.x, all->player.rect.right_top.y, create_trgb(0, 255, 0, 0));
 	mlx_string_put(all->mlx_ptr, all->win_ptr, 150, 80, create_trgb(0, 0, 255, 0), walk_cnt);
-	//ft_printf("%d\n", all->walk_cnt);
+	ft_printf("%d\n", all->walk_cnt);
 	free(walk_cnt);
 }
 

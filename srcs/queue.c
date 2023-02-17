@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:54 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/15 21:19:23 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 19:45:46 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,12 @@ t_pos	dequeue(t_queue *queue)
 	free(ptr);
 	queue->count--;
 	return (data);
+}
+
+void	free_queue(t_queue *queue)
+{
+	while (!is_empty(queue))
+	{
+		dequeue(queue);
+	}
 }

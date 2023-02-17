@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:27 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 15:47:06 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 19:46:15 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	init_queue(t_queue *queue);
 int		is_empty(t_queue *queue);
 void	enqueue(t_queue *queue, int x, int y);
 t_pos	dequeue(t_queue *queue);
+void	free_queue(t_queue *queue);
 
 // bfs
 int		bfs(t_all *all);
@@ -77,6 +78,7 @@ int		haveone_final_check(t_all *all);
 // so_long_utils3
 int		vertex_y_from_to(t_all *all, t_pos from, t_pos to);
 int		vertex_x_from_to(t_all *all, t_pos from, t_pos to);
+void	exit_so_long(t_all *all);
 
 // ****collision****
 void	box_collider_update(t_all *all);

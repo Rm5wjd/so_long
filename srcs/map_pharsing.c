@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:35 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 15:21:49 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/17 19:24:40 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	map_pharsing(t_all *all, char **argv)
 		if (nl_strlen(line) != all->map_width)
 			return (1);
 		all->map_height++;
+		free(line);
 		line = 0;
 		line = get_next_line(fd);
 	}

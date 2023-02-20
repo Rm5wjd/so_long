@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:06 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 19:46:35 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/20 14:26:11 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,27 +86,26 @@ int	bfs(t_all *all)
 {
 	t_queue	q;
 	t_pos	pos;
-	int		colletible_cnt;
+	int		obj_cnt[2];
 
 	all->found = found_arr_init(all->map_width, all->map_height);
 	init_queue(&q);
 	enqueue(&q, all->player.pos.x / 64, all->player.pos.y / 64);
 	all->found[all->player.pos.y / 64][all->player.pos.x / 64] = 1;
-	colletible_cnt = 0;
+	ft_bzero(obj_cnt, sizeof(obj_cnt));
 	while (q.count > 0)
 	{
 		pos = dequeue(&q);
 		if (all->map[pos.y][pos.x] == 'C')
-			colletible_cnt++;
-		if (all->map[pos.y][pos.x] == 'E' && \
-		colletible_cnt == all->collectible_cnt)
-		{
-			//free(all->found);
-			free_queue(&q);
-			return (1);
-		}
+			obj_cnt[0]++;
+		if (all->map[pos.y][pos.x] == 'E')
+			obj_cnt[1]++;
 		bfs_search(pos.y, pos.x, &q, all);
 	}
-	//free(all->found);
+	if (obj_cnt[1] == 1 && all->collectible_cnt == obj_cnt[0])
+	{
+		free_queue(&q);
+		return (1);
+	}
 	return (0);
 }

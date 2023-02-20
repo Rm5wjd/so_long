@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:43 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 15:31:28 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/20 14:15:24 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,25 @@ static int	wall_check(t_all *all)
 int	map_valid_check(t_all *all)
 {
 	if (!rectangular_check(all))
+	{
+		ft_printf("rectangular_check catch\n");
 		return (1);
+	}
 	if (!must_have_one(all))
+	{
+		ft_printf("must_have_one\n");
 		return (1);
+	}
 	if (!wall_check(all))
+	{
+		ft_printf("wall_check catch\n");
 		return (1);
+	}
 	if (!bfs(all))
+	{
+		ft_printf("bfs catch\n");
 		return (1);
+	}
 	ft_printf("map check end\n");
 	return (0);
 }

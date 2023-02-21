@@ -6,7 +6,7 @@
 		"type": "cppdbg",
 		"request": "launch",
 		"program": "${workspaceFolder}/so_long",
-		"args": ["./map.ber"],
+		"args": ["./map.bers"],
 		"stopAtEntry": false,
 		"cwd": "${fileDirname}",
 		"environment": [],

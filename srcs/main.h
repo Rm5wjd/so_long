@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:27 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 19:46:15 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/21 19:29:48 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft/get_next_line.h"
 # include "struct.h"
 
+int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 //color.c
 int		get_t(int trgb);
 int		get_r(int trgb);
@@ -47,12 +48,19 @@ void	enemy_right_sprite_init(t_all *all);
 // *** render ***
 int		render_all(t_all *all);
 
+// file_extension_check
+int		file_extension_check(char **argv);
+
 // map_pharsing
-int		map_pharsing(t_all *all, char **argv);
+int		map_parsing(t_all *all, char **argv);
 void	print_map(t_all *all);
+
+// enemy_spawn
+void	enemy_spawn(t_all *all_data);
 
 // map_valid_check
 int		map_valid_check(t_all *all);
+int		screen_size_check(t_all *all);
 
 // queue
 void	init_queue(t_queue *queue);
@@ -63,6 +71,8 @@ void	free_queue(t_queue *queue);
 
 // bfs
 int		bfs(t_all *all);
+//bfs_utils.c
+int		continue_case_check(int next_x, int next_y, int *i, t_all *all);
 
 // so_long_utils
 void	map_zero(t_all *all);

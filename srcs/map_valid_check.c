@@ -6,20 +6,11 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:43 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/20 14:15:24 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/21 17:32:42 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-static int	rectangular_check(t_all *all)
-{
-	if (all->map_width == all->map_height || all->map_height <= 0 \
-	|| all->map_width <= 0)
-		return (0);
-	else
-		return (1);
-}
 
 static int	must_have_one(t_all *all)
 {
@@ -74,13 +65,25 @@ static int	wall_check(t_all *all)
 	return (1);
 }
 
+int	screen_size_check(t_all *all)
+{
+	int	map_width;
+	int	map_height;
+	int	screen_width;
+	int	screen_height;
+
+	map_width = all->map_width * TILE_BIT;
+	map_height = all->map_height * TILE_BIT;
+	screen_height = 0;
+	screen_height = 0;
+	mlx_get_screen_size(all->mlx_ptr, &screen_width, &screen_height);
+	if (screen_height < map_height || screen_width < map_width)
+		return (1);
+	return (0);
+}
+
 int	map_valid_check(t_all *all)
 {
-	if (!rectangular_check(all))
-	{
-		ft_printf("rectangular_check catch\n");
-		return (1);
-	}
 	if (!must_have_one(all))
 	{
 		ft_printf("must_have_one\n");

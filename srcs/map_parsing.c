@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_pharsing.c                                     :+:      :+:    :+:   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:35 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/17 19:24:40 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/21 15:35:42 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ static void	line_to_map(char **map, char *line, int i)
 	}
 }
 
-static size_t	nl_strlen(const char *s)
+static int	nl_strlen(const char *s)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
+	if (!s)
+		return (0);
 	while (s[len] && s[len] != '\n')
 	{
 		len++;
@@ -50,7 +52,7 @@ static void	read_map(t_all *all, char **argv)
 	}
 }
 
-int	map_pharsing(t_all *all, char **argv)
+int	map_parsing(t_all *all, char **argv)
 {
 	int		fd;
 	char	*line;
@@ -64,7 +66,7 @@ int	map_pharsing(t_all *all, char **argv)
 	all->map_height = 0;
 	while (line != 0)
 	{
-		if (nl_strlen(line) != all->map_width)
+		if (all->map_width == 0 || nl_strlen(line) != all->map_width)
 			return (1);
 		all->map_height++;
 		free(line);
@@ -72,7 +74,7 @@ int	map_pharsing(t_all *all, char **argv)
 		line = get_next_line(fd);
 	}
 	all->map = (char **)malloc(sizeof(char *) * all->map_height);
-	if (!all->map)
+	if (!all->map || all->map_width == 0)
 		return (1);
 	close(fd);
 	read_map(all, argv);

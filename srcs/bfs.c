@@ -6,7 +6,7 @@
 /*   By: junglee <junglee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:42:06 by junglee           #+#    #+#             */
-/*   Updated: 2023/02/20 14:26:11 by junglee          ###   ########.fr       */
+/*   Updated: 2023/02/21 14:58:12 by junglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,8 @@ static void	bfs_search(int now_y, int now_x, t_queue *q, t_all *all)
 	{
 		next_y = delta_y(now_y, i);
 		next_x = delta_x(now_x, i);
-		if (next_x < 0 || next_x >= all->map_width || \
-		next_y < 0 || next_y >= all->map_height)
-		{
-			i++;
+		if (continue_case_check(next_x, next_y, &i, all))
 			continue ;
-		}
-		if (all->map[next_y][next_x] == '1' || all->found[next_y][next_x] == 1)
-		{
-			i++;
-			continue ;
-		}
 		enqueue(q, next_x, next_y);
 		all->found[next_y][next_x] = 1;
 		i++;
@@ -86,26 +77,26 @@ int	bfs(t_all *all)
 {
 	t_queue	q;
 	t_pos	pos;
-	int		obj_cnt[2];
+	int		collect_cnt;
 
+	ft_printf("%d\n", all->exit_cnt);
 	all->found = found_arr_init(all->map_width, all->map_height);
 	init_queue(&q);
 	enqueue(&q, all->player.pos.x / 64, all->player.pos.y / 64);
 	all->found[all->player.pos.y / 64][all->player.pos.x / 64] = 1;
-	ft_bzero(obj_cnt, sizeof(obj_cnt));
+	collect_cnt = 0;
 	while (q.count > 0)
 	{
 		pos = dequeue(&q);
 		if (all->map[pos.y][pos.x] == 'C')
-			obj_cnt[0]++;
-		if (all->map[pos.y][pos.x] == 'E')
-			obj_cnt[1]++;
+			collect_cnt++;
 		bfs_search(pos.y, pos.x, &q, all);
 	}
-	if (obj_cnt[1] == 1 && all->collectible_cnt == obj_cnt[0])
+	if (all->exit_cnt < 1 && all->collectible_cnt == collect_cnt)
 	{
 		free_queue(&q);
 		return (1);
 	}
+	ft_printf("%d\n", all->exit_cnt);
 	return (0);
 }

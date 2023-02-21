@@ -9,11 +9,13 @@ DYLD_LIBRARY_PATH=minilibx_opengl_20191021
 
 RM=rm -rf
 
-SRCS= $(addprefix srcs/, main.c color.c key_event.c init.c map_pharsing.c map_valid_check.c queue.c bfs.c \
+SRCS= $(addprefix srcs/, main.c color.c key_event.c init.c \
+		file_extension_check.c map_parsing.c map_valid_check.c \
+		queue.c bfs.c bfs_utils.c \
 		player_left_sprite_init.c player_right_sprite_init.c rendering.c \
-		so_long_utils.c key_release.c player_collision.c tile_setting.c wasd_pos_set.c \
-		enemy_left_sprite_init.c enemy_right_sprite_init.c enemy_collision.c \
-		so_long_utils2.c so_long_utils3.c)
+		key_release.c player_collision.c tile_setting.c wasd_pos_set.c \
+		enemy_left_sprite_init.c enemy_right_sprite_init.c enemy_collision.c enemy_spawn.c \
+		so_long_utils.c so_long_utils2.c so_long_utils3.c)
 OBJS=$(SRCS:.c=.o)
 
 all : $(NAME)

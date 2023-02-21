@@ -6,6 +6,7 @@
 		"locale": "c",
 		"unistd.h": "c",
 		"main.h": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"mlx_custom.h": "c"
 	}
 }
